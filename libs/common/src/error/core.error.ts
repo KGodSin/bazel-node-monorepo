@@ -32,12 +32,12 @@ export class CoreError extends Error {
 
   private constructor(error: OfParam<CoreError>) {
     super(error.message);
-    this._tag = error._tag;
+    this._tag = error._tag as CoreErrorTag;
     this.code = error.code;
-    this.detail = error.detail;
-    this.name = error.name;
+    this.detail = error.detail ?? '';
+    this.name = error.name ?? '';
     this.stack = error.stack;
-    this.message = error.message
+    this.message = error.message ?? ''
   }
 }
 
@@ -47,7 +47,7 @@ const tagIs = (tag: CoreErrorTag) => (error: CoreError) => error?._tag === tag;
 export const optionOf = (error: OfParam<CoreError>): O.Option<CoreError> =>
   F.pipe(
     O.fromNullable(error),
-    O.map(err => CoreError.new(error._tag)({
+    O.map(err => CoreError.new(error._tag as CoreErrorTag)({
       code: err.code,
       message: error.message,
       detail: err.detail ?? err.message,

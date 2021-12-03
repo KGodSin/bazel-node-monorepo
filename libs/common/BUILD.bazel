@@ -1,0 +1,111 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary","js_library")
+load("@npm//@bazel/jasmine:index.bzl", "jasmine_node_test")
+load("@npm//@bazel/typescript:index.bzl", "ts_project","ts_library","ts_config")
+
+
+package(default_visibility = ["//visibility:public"])
+
+# ts_library(
+#     name = "core",
+#     srcs = glob(
+#         ["*.ts"],
+#         exclude = ["*.spec.ts"],
+#     ),
+#     module_name = "@my_workspace/core",
+#     deps = [
+#         "@npm//@types/node",
+#         "@npm//tslib",
+#     ],  
+# )
+
+ts_config(
+    name = "libs_common_tsconfig",
+    src = "tsconfig.json",
+    deps = ["//:tsconfig.json"],
+)
+
+# ts_project(
+#     name = "libs_common_project",
+#     srcs = glob(
+#         ["**/*.ts"],
+#         exclude = ["**/*.spec.ts"],
+#     ),
+#     declaration = True,
+#     composite = True,
+#     tsconfig = "libs_common_tsconfig",
+#     deps = [
+#         "@npm//@types/node",
+#         "@npm//@types/express",
+#         "@npm//fp-ts",
+#         "@npm//express"
+#     ],
+
+# )
+
+
+ts_library(
+    name ="libs_common",
+    module_name="@snowball/common",
+    package_name = "@snowball/common",
+    devmode_module = "commonjs",
+    srcs = glob(
+        ["src/**/*.ts"],
+        exclude = ["src/**/*.spec.ts"],
+    ),
+    module_root ="src",
+    tsconfig = "libs_common_tsconfig",
+    deps = [
+        "@npm//@types/node",
+        "@npm//@types/express",
+        "@npm//fp-ts",
+        "@npm//express"
+        # "libs_common_tsconfig",
+    ]
+)
+
+# js_library(
+#     name = "libs_common",
+#     package_name = "@snowball/common",
+#     deps = [
+        
+#     ],
+# )
+
+# ng_module(
+#     name = "core",
+#     srcs = glob([
+#         "*.ts",
+#     ]),
+#     # we have to use ng_module to access this module from other targets with this module name
+#     module_name = "@my_workspace/core",
+# )
+
+# npm_package(
+#     name = "npm_package",
+#     srcs = [":package.json"],
+#     deps = [
+#         ":core"
+#     ],
+# )
+
+
+
+
+
+# ts_project(
+#     name = "test_lib",
+#     srcs = glob(["*.spec.ts"]),
+#     declaration = True,
+#     tsconfig = "//:tsconfig.json",
+#     deps = [
+#         ":app",
+#         "@npm//@nestjs/common",
+#         "@npm//@types/jasmine",
+#         "@npm//@types/superagent",
+#         "@npm//@types/supertest",
+#         "@npm//jasmine",
+#         "@npm//superagent",
+#         "@npm//supertest",
+#     ],
+# )
+

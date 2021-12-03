@@ -2,3 +2,4 @@
 # See https://docs.bazel.build/versions/main/build-ref.html#BUILD_files
 
 
+exports_files(["tsconfig.json"])

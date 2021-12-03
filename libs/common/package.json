@@ -1,0 +1,13 @@
+{
+  "name": "@libs/common",
+  "private":true,
+  "dependencies": {
+    "tslib": "*"
+  },
+  "peerDependencies": {
+    
+  },
+  "devDependencies": {
+    "@types/node": "*"
+  }
+}
