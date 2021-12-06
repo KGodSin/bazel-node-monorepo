@@ -5,6 +5,7 @@
     "devDependencies": {
         "@bazel/bazelisk": "latest",
         "@bazel/buildifier": "latest",
+        "@bazel/esbuild": "^4.4.6",
         "@bazel/ibazel": "latest",
         "@bazel/jasmine": "^4.4.6",
         "@bazel/typescript": "^4.4.6",
@@ -21,9 +22,9 @@
     "dependencies": {
         "@nestjs/common": "^8.2.3",
         "@nestjs/core": "^8.2.3",
-        "reflect-metadata": "0.1.13",
         "express": "^4.17.1",
         "fp-ts": "^2.11.5",
-        "jasmine": "^3.10.0"
+        "jasmine": "^3.10.0",
+        "reflect-metadata": "0.1.13"
     }
 }

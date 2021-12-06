@@ -31,7 +31,7 @@ ts_project(
     declaration = True,
     composite = True,
     deps = [
-        "//libs/common:libs_common",
+        "//packages/core",
         "@npm//@types/node",
         "@npm//tslib",
     ],

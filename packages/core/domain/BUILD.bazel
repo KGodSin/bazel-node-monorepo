@@ -1,0 +1,45 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary","js_library")
+load("@npm//@bazel/jasmine:index.bzl", "jasmine_node_test")
+load("@npm//@bazel/typescript:index.bzl", "ts_project","ts_library","ts_config")
+load("@npm//@bazel/esbuild:index.bzl", "esbuild")
+
+
+package(default_visibility = ["//visibility:public"])
+
+
+
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    deps = ["//:tsconfig.json"],
+)
+
+
+ts_library(
+    name ="tslibrary",
+    devmode_module = "commonjs",
+    srcs = glob(
+        [ "**/*.ts"],
+        exclude = ["**/*.spec.ts"],
+    ),
+    tsconfig = "tsconfig",
+    deps = [
+        "@npm//@types/node",
+        "@npm//@types/express",
+        "@npm//fp-ts",
+        "@npm//express"
+        # "libs_common_tsconfig",
+    ]
+)
+
+js_library(
+    name = "domain",
+    srcs = [
+        "package.json"
+    ],
+    deps = [
+        ":tslibrary"
+    ]
+)
+

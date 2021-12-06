@@ -1,0 +1,29 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary","js_library")
+load("@npm//@bazel/jasmine:index.bzl", "jasmine_node_test")
+load("@npm//@bazel/typescript:index.bzl", "ts_project","ts_library","ts_config")
+load("@npm//@bazel/esbuild:index.bzl", "esbuild")
+
+
+package(default_visibility = ["//visibility:public"])
+
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    deps = ["//:tsconfig.json"],
+)
+
+js_library(
+    name = "core",
+    package_name = "@packages/core",
+    deps = [
+        ":tsconfig",
+        "//packages/core/common",
+        "//packages/core/domain",
+        "//packages/core/service",
+    ],
+    srcs = [
+      "package.json"
+    ]
+)
+

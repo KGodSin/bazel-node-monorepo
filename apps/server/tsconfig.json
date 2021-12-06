@@ -2,7 +2,16 @@
   "extends": "../../tsconfig.json",
   "references": [
     {
-      "path": "../../libs/common"
+      "path": "../../packages/core"
+    },
+    {
+      "path": "../../packages/core/service"
+    },
+    {
+      "path": "../../packages/core/domain"
+    },
+    {
+      "path": "../../packages/core/common"
     }
   ]
 }

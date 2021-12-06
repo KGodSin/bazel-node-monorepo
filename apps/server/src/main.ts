@@ -1,5 +1,10 @@
 
-import {CoreError, CoreErrorTag} from '@snowball/common'
+import { CoreError, CoreErrorTag } from '@packages/core/common'
+import {domain} from '@packages/core/domain'
+import {service} from '@packages/core/service'
+
+console.log(domain);
+console.log(service);
 console.log('run');
 console.log('hello world!!')
 
