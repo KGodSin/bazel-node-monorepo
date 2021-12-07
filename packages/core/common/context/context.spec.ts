@@ -22,10 +22,6 @@ import {
   contextFactory
 } from './context.helper'
 describe('context', () => {
-  test('createContextToken', () => {
-    console.log(createContextToken('token'));
-  }),
-
     test('asks context for a lazy reader dependency and bootstraps it only once', async () => {
       // given
       const spy = jest.fn();
@@ -39,7 +35,6 @@ describe('context', () => {
         ]),
         resolve,
       )(createContext());
-      console.log(context)
 
       // then
       expect(lookup(context)(token)).toEqual(O.some('test'));
