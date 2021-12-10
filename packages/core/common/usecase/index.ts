@@ -1,2 +1,2 @@
-export * from "./UseCase";
-export * from "./UseCaseResolver"
+export * from "./usecase";
+export * from "./usecase.resolver"

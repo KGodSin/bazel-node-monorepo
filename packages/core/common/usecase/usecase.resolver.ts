@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs'
 // import { concatMap, map, tap } from 'rxjs/operators'
 import { UseCase, UseCaseCreator } from './usecase'
+import {Port} from './usecase.port'
 // import * as R from 'fp-ts/Reader'
 // import { of, Subject } from 'rxjs'
 // import { createContextToken } from '../context/context.token.factory'
@@ -17,7 +18,7 @@ export interface UseCaseResolver<T, R> {
   resolve: UseCaseResolve<T, R>
 }
 
-export type UseCaseResolve<T, R> = (usecase: UseCase<T, R>) => Observable<R>
+export type UseCaseResolve<T, R> = (usecase: UseCase<Port<T,R>>) => Observable<R>
 
 
 export const fromResolve = <T, R>(resolve: UseCaseResolve<T, R>): UseCaseResolver<T, R> => ({
@@ -25,7 +26,7 @@ export const fromResolve = <T, R>(resolve: UseCaseResolve<T, R>): UseCaseResolve
 })
 
 export const createResolver =
-  <T, R, C = ContextReader>(creator: UseCaseCreator<T, R>, resolve: (ctx: C, usecase: UseCase<T, R>) => Observable<R>) => {
+  <T, R, C = ContextReader>(creator: UseCaseCreator<T, R>, resolve: (ctx: C, usecase: UseCase<Port<T,R>>) => Observable<R>) => {
       const token = creator({} as any).token
       return bindTo(
         token,
