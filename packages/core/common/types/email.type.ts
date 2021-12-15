@@ -8,7 +8,7 @@ import {
 const isString = (u: unknown): u is string => typeof u === "string";
 const isEmail = (s: string) => /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(s);
 
-const email = new t.Type<string, string, string>(
+export const email = new t.Type<string, string, string>(
   "email",
   isString,
   (input, context) => isEmail(input) ? t.success(input):t.failure(input,context),
